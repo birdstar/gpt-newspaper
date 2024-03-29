@@ -7,21 +7,24 @@
     <link rel="stylesheet" href="static/styles.css">
     <link rel="icon" type="image/x-icon" href="static/favicon.ico">
 </head>
+<script src="static/scripts.js"></script>
+
 <body>
     <div class="container">
         <header>
             <div class="header-content">
-                <h1>Gpt Newspaper</h1>
+                <h1>MB Personal Newspaper</h1>
             </div>
-            <p class="powered-by">Powered by <a href="https://tavily.com" target="_blank">Tavily</a></p>
-            <p class = "topics-interest">Type topics of interest and get your personalized newspaper</p>
+            <p class="powered-by">Powered by <a href="https://www.mercedes-benz.com" target="_blank">Mercedes-Benz</a></p>
+            <p class = "topics-interest">You might be interested in these topics:</p>
 
         </header>
 
         <section class="topic-selection">
             <form id="topicForm">
                 <div class="form-group" id="topicGroup1">
-                    <input class = "inputText" type="text" id="topic1" name="topic1" required>
+                    <!--
+                    <input class = "inputText" type="text" id="topic1" name="topic1" required> -->
                     <span class="icon add-topic">---</span>
                     <span class="icon remove-topic">-</span>
                 </div>
@@ -50,6 +53,40 @@
         </section>
     </div>
 
-    <script src="static/scripts.js"></script>
+
 </body>
+
+<script>
+        // 获取URL中的查询参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const topicsParam = urlParams.get('topics');
+
+        // 解析传入的topics参数
+        const topics = topicsParam ? JSON.parse(topicsParam) : [];
+
+        // 获取inputContainer元素
+        const inputContainer = document.getElementById('inputContainer');
+
+        // 根据传入的参数动态添加input元素
+        topics.forEach(topic => {
+                topicCount++;
+                const formGroup = document.createElement('div');
+                formGroup.className = 'form-group';
+                formGroup.id = 'topicGroup' + topicCount;
+
+                const inputElement = document.createElement('input');
+                inputElement.type = 'text';
+                inputElement.id = 'topic' + topicCount;
+                inputElement.name = 'topic' + topicCount;
+                inputElement.className = 'inputText';
+                inputElement.required = true;
+                inputElement.value = topic;
+
+                formGroup.appendChild(inputElement);
+
+                document.getElementById('topicForm').appendChild(formGroup);
+
+                addIconToLastTopic();
+        });
+    </script>
 </html>

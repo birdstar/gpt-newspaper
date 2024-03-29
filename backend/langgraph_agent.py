@@ -3,6 +3,10 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from langgraph.graph import Graph
 
+from datetime import datetime
+from langchain.adapters.openai import convert_openai_messages
+from langchain_openai import ChatOpenAI
+
 # Import agent classes
 from .agents import SearchAgent, CuratorAgent, WriterAgent, DesignerAgent, EditorAgent, PublisherAgent, CritiqueAgent
 
@@ -13,6 +17,7 @@ class MasterAgent:
         os.makedirs(self.output_dir, exist_ok=True)
 
     def run(self, queries: list, layout: str):
+
         # Initialize agents
         search_agent = SearchAgent()
         curator_agent = CuratorAgent()
@@ -29,19 +34,24 @@ class MasterAgent:
         workflow.add_node("search", search_agent.run)
         workflow.add_node("curate", curator_agent.run)
         workflow.add_node("write", writer_agent.run)
-        workflow.add_node("critique", critique_agent.run)
+        # workflow.add_node("critique", critique_agent.run)
         workflow.add_node("design", designer_agent.run)
 
         # Set up edges
         workflow.add_edge('search', 'curate')
         workflow.add_edge('curate', 'write')
-        workflow.add_edge('write', 'critique')
-        workflow.add_conditional_edges(start_key='critique',
-                                       condition=lambda x: "accept" if x['critique'] is None else "revise",
-                                       conditional_edge_mapping={"accept": "design", "revise": "write"})
+        # workflow.add_edge('write', 'critique')
+        # workflow.add_conditional_edges(start_key='critique',
+        #                                condition=lambda x: "accept" if x['critique'] is None else "revise",
+        #                                conditional_edge_mapping={"accept": "design", "revise": "write"})
+
+       # Save tokens
+        workflow.add_edge('write', 'design')
+
 
         # set up start and end nodes
         workflow.set_entry_point("search")
+        # workflow.set_entry_point("curate")
         workflow.set_finish_point("design")
 
         # compile the graph
@@ -49,7 +59,7 @@ class MasterAgent:
 
         # Execute the graph for each query in parallel
         with ThreadPoolExecutor() as executor:
-            parallel_results = list(executor.map(lambda q: chain.invoke({"query": q}), queries))
+            parallel_results = list(executor.map(lambda q: chain.invoke({"query": q}, config={"recursion_limit":100}), queries))
 
         # Compile the final newspaper
         newspaper_html = editor_agent.run(parallel_results)

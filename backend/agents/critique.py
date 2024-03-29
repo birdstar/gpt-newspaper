@@ -24,7 +24,8 @@ class CritiqueAgent:
         }]
 
         lc_messages = convert_openai_messages(prompt)
-        response = ChatOpenAI(model='gpt-4', max_retries=1).invoke(lc_messages).content
+        response = ChatOpenAI(openai_api_base='https://api.chatweb.plus/v1',model='gpt-3.5-turbo', max_retries=1).invoke(lc_messages).content
+        print(response)
         if response == 'None':
             return {'critique': None}
         else:

@@ -59,7 +59,7 @@ class WriterAgent:
             "response_format": {"type": "json_object"}
         }
 
-        response = ChatOpenAI(model='gpt-4-0125-preview', max_retries=1, model_kwargs=optional_params).invoke(lc_messages).content
+        response = ChatOpenAI(openai_api_base='https://api.chatweb.plus/v1',model='gpt-3.5-turbo', max_retries=1, model_kwargs=optional_params).invoke(lc_messages).content
         return json.loads(response)
 
     def revise(self, article: dict):
@@ -83,7 +83,7 @@ class WriterAgent:
             "response_format": {"type": "json_object"}
         }
 
-        response = ChatOpenAI(model='gpt-4-0125-preview', max_retries=1, model_kwargs=optional_params).invoke(lc_messages).content
+        response = ChatOpenAI(openai_api_base='https://api.chatweb.plus/v1',model='gpt-3.5-turbo', max_retries=1, model_kwargs=optional_params).invoke(lc_messages).content
         response = json.loads(response)
         print(f"For article: {article['title']}")
         print(f"Writer Revision Message: {response['message']}\n")

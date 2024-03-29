@@ -30,8 +30,9 @@ class CuratorAgent:
         }]
 
         lc_messages = convert_openai_messages(prompt)
-        response = ChatOpenAI(model='gpt-4-0125-preview', max_retries=1).invoke(lc_messages).content
+        response = ChatOpenAI(openai_api_base='https://api.chatweb.plus/v1',model='gpt-3.5-turbo', max_retries=1).invoke(lc_messages).content
         chosen_sources = response
+        print(response)
         for i in sources:
             if i["url"] not in chosen_sources:
                 sources.remove(i)

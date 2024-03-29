@@ -76,7 +76,7 @@ function toggleLoading(isLoading) {
 }
 
 
-let topicCount = 1;
+let topicCount = 0;
 
 window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('produceNewspaper').addEventListener('click', produceNewspaper);
@@ -129,6 +129,7 @@ function addTopicField() {
     document.getElementById('topicForm').appendChild(formGroup);
 
     addIconToLastTopic();
+
 }
 
 
