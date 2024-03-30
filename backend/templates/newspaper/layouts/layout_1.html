@@ -73,6 +73,48 @@ footer {
 }
     </style>
 </head>
+<script>
+    function getVoice(news, voice, emotion, ele){
+        const url = 'http://127.0.0.1:6006/v1/audio/speech';
+        const data = {
+            input: news,
+            voice: voice,
+            prompt: emotion,
+            language: "zh_us",
+            model: "emoti-voice",
+            response_format: "mp3",
+            speed: 1
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+
+            const audio = new Audio();
+            audio.src = url;
+            audio.controls = true;
+            audio.autoplay = false;
+
+            ele.appendChild(audio);
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+    }
+</script>
 <body>
     <header>
         <h1>GPT Newspaper</h1>
@@ -85,4 +127,25 @@ footer {
         <p>© 2023 GPT Newspaper. All Rights Reserved.</p>
     </footer>
 </body>
+<script>
+        // 获取所有具有类名为 "article" 的元素
+const articles = document.querySelectorAll('.article');
+
+// 遍历每个 article 元素
+articles.forEach(article => {
+    const emotions = article.querySelectorAll('.emotion');
+    emotionPText = emotions[0].outerText;
+    // 在每个 article 元素中查找 <p> 元素
+    const paragraphs = article.querySelectorAll('p');
+    // 遍历每个 <p> 元素并提取其文本内容
+    paragraphs.forEach(paragraph => {
+         paragraphText = paragraph.textContent;
+
+    });
+
+    const voices = article.querySelectorAll('.voice');
+    voicenPText = voices[0].outerText;
+    getVoice(paragraphText, voicenPText, emotionPText , article); // 输出 <p> 元素的文本内容
+});
+</script>
 </html>

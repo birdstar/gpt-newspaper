@@ -33,7 +33,7 @@ function produceNewspaper() {
         layout: selectedLayout
     };
 
-    fetch('http://localhost:8000/generate_newspaper', {
+    fetch('http://43.135.163.166:8000/generate_newspaper', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

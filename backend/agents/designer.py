@@ -19,12 +19,16 @@ class DesignerAgent:
         title = article["title"]
         date = article["date"]
         image = article["image"]
+        voice = article["voice"]
+        emotion = article["emotion"]
         paragraphs = article["paragraphs"]
         html_template = html_template.replace("{{title}}", title)
         html_template = html_template.replace("{{image}}", image)
         html_template = html_template.replace("{{date}}", date)
         for i in range(5):
             html_template = html_template.replace(f"{{paragraph{i + 1}}}", paragraphs[i])
+        html_template = html_template.replace("{{voice}}", voice)
+        html_template = html_template.replace("{{emotion}}", emotion)
         article["html"] = html_template
         article = self.save_article_html(article)
         return article

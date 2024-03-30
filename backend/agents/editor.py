@@ -6,6 +6,8 @@ article_templates = {
         <a href="{{path}}" target="_blank"><h2>{{title}}</h2></a>
         <img src="{{image}}" alt="Article Image">
         <p>{{summary}}</p>
+        <div class="voice" style="display: none;">{{voice}}</div>
+        <div class="emotion" style="display: none;">{{emotion}}</div>
     </div>
     """,
     "layout_2.html": """
@@ -14,6 +16,8 @@ article_templates = {
         <div>
             <a href="{{path}}" target="_blank"><h2>{{title}}</h2></a>
             <p>{{summary}}</p>
+            <div class="voice" style="display: none;">{{voice}}</div>
+            <div class="emotion" style="display: none;">{{emotion}}</div>
         </div>
     </div>
     """,
@@ -22,6 +26,8 @@ article_templates = {
         <a href="{{path}}" target="_blank"><h2>{{title}}</h2></a>
         <img src="{{image}}" alt="Article Image">
         <p>{{summary}}</p>
+        <div class="voice" style="display: none;">{{voice}}</div>
+        <div class="emotion" style="display: none;">{{emotion}}</div>
     </div>
     """,
 }
@@ -48,6 +54,8 @@ class EditorAgent:
             article_html = article_html.replace("{{image}}", article["image"])
             article_html = article_html.replace("{{summary}}", article["summary"])
             article_html = article_html.replace("{{path}}", article["path"])
+            article_html = article_html.replace("{{voice}}",  article["voice"])
+            article_html = article_html.replace("{{emotion}}", article["emotion"])
             articles_html += article_html
 
         # Replace placeholders in template
