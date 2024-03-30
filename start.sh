@@ -1,0 +1,3 @@
+export OPENAI_API_KEY=sk-D0NmjFJ7k5DTKkcI04193e7f352a4e848aA8C0De2259F87e
+export TAVILY_API_KEY=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
+python app.py
