@@ -10,7 +10,10 @@ load_dotenv()
 CORS(backend_app)
 
 
+
 frontend_app = Flask(__name__, static_folder='frontend')
+frontend_app.run('0.0.0.0', debug=True, port=5000, ssl_context=('ssl/server.crt',
+                                                                'ssl/server.key'))
 
 @frontend_app.route('/')
 def index():
