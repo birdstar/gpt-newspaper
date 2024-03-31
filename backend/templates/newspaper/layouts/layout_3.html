@@ -102,7 +102,25 @@
         color: white;
         text-align: center;
     }
+.container {
+            display: flex;
+            justify-content: center;
+        }
+audio {
+    height: 30px; /* 设置音频元素的高度 */
+}
 
+.img2 {
+    flex: 0.5;
+    height: 30px; /* 设置图片的高度 */
+    width: 20px; /* 设置图片的高度 */
+    margin-right: 0px; /* 可选：增加一些右边距 */
+}
+.audio2 {
+    flex: 9.5;
+    height: 30px; /* 设置图片的高度 */
+    margin-right: 0px; /* 可选：增加一些右边距 */
+}
 
 
     </style>
@@ -142,7 +160,21 @@
             audio.controls = true;
             audio.autoplay = false;
 
-            ele.appendChild(audio);
+            var newImg = document.createElement('img');
+            newImg.src = 'aigc.png'; // 图片的路径
+            newImg.alt = 'AIGC'; // 图片的替代文本
+            newImg.width = 100; // 图片的宽度
+            newImg.height = 100; // 图片的高度
+            newImg.className = "img2";
+
+            var newDiv = document.createElement('div');
+            newDiv.classList.add('container');
+
+            newDiv.appendChild(newImg);
+            newDiv.appendChild(audio);
+
+
+            ele.appendChild(newDiv);
         })
         .catch(error => {
             console.error('There was a problem with your fetch operation:', error);
