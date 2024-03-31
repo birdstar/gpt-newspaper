@@ -153,7 +153,7 @@ audio {
         });
     }
 
-    function getVideo(filename, ele){
+    async function getVideo(filename, ele){
         const url = 'https://43.135.163.166:8001/video/'+filename;
         fetch(url, {
             method: 'GET',
@@ -162,7 +162,8 @@ audio {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                console.error('Network response was not ok');
+                getVideo(filename, ele);
             }
             return response.blob();
         })
