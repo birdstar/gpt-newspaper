@@ -25,7 +25,7 @@ class DesignerAgent:
         html_template = html_template.replace("{{title}}", title)
         html_template = html_template.replace("{{image}}", image)
         html_template = html_template.replace("{{date}}", date)
-        for i in range(5):
+        for i in range(len(paragraphs)):
             html_template = html_template.replace(f"{{paragraph{i + 1}}}", paragraphs[i])
         html_template = html_template.replace("{{voice}}", voice)
         html_template = html_template.replace("{{emotion}}", emotion)
