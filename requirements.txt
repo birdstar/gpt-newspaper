@@ -8,4 +8,3 @@ json5
 Flask-CORS
 langchain_openai
 python-dotenv
-shutil
