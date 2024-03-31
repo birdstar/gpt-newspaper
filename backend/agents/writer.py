@@ -29,7 +29,7 @@ sample_revise_json = """
         "paragraph 4",
         "paragraph 5",
     ],
-    "voice_type": "8051 or BZNSYP",
+    "voice": "8051 or BZNSYP",
     "emotion": "开心 or 悲伤"
     "message": "message to the critique"
 }

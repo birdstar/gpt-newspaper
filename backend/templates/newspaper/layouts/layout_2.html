@@ -1,112 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="../../frontend/static/favicon.ico">
-    <title>GPT Newspaper</title>
-    <style>
-    @import url('https://fonts.cdnfonts.com/css/chomsky');
-    @import url('https://db.onlinewebfonts.com/c/4c4a87973ef80fc72049e01b9085fadc?family=ABC+Diatype');
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="../../frontend/static/favicon.ico">
+        <title>GPT Newspaper</title>
+        <style>
+        @import url('https://fonts.cdnfonts.com/css/chomsky');
+        @import url('https://db.onlinewebfonts.com/c/4c4a87973ef80fc72049e01b9085fadc?family=ABC+Diatype');
 
-    body {
-        font-family: 'ABCDiatype', serif;
+        body {
+            font-family: 'ABCDiatype', serif;
 
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-        margin: 0;
-        padding: 0;
-    }
-
-    header, .content, footer {
-        width: 80%;
-        margin: auto;
-        overflow: hidden;
-
-    }
-
-    header {
-        padding: 1em 0;
-        color: #f2f2f2;
-        text-align: center;
-        font-family: 'Chomsky', serif;
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        border-radius: 10px;
-        background-color: #f2f2f2;
-    }
-
-    h1 {
-        font-size: 4em;
-        margin-bottom: 0.5em;
-    }
-
-    h2 {
-        font-size: 1em;
-        margin-bottom: 0.3em;
-    }
-    h3 {
-        font-size: 1.5em;
-        margin-bottom: 0.3em;
-        color: white;
-    }
-    p {
-        font-size: 1.1em;
-        line-height: 1.6;
-    }
-
-    .article {
-        display: flex;
-        flex-direction: row;
-        align-items: start;
-        margin: 2em 2em;
-        gap: 20px;
-    }
-
-    .article img {
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-
-
-    }
-
-    .article h2, .article p {
-        margin: 0;
-        padding: 0;
-    }
-
-    .source {
-        font-size: 0.8em;
-        color: #888;
-    }
-
-    footer {
-        color: white;
-        text-align: center;
-        padding: 1em 0;
-    }
-    .container {
-            display: flex;
-            justify-content: center;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            margin: 0;
+            padding: 0;
         }
-audio {
-    height: 30px; /* 设置音频元素的高度 */
-}
 
-.img2 {
-    flex: 0.5;
-    height: 30px; /* 设置图片的高度 */
-    width: 20px; /* 设置图片的高度 */
-    margin-right: 0px; /* 可选：增加一些右边距 */
-}
-.audio2 {
-    flex: 9.5;
-    height: 30px; /* 设置图片的高度 */
-    margin-right: 0px; /* 可选：增加一些右边距 */
-}
+        header, .content, footer {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+
+        }
+
+        header {
+            padding: 1em 0;
+            color: #f2f2f2;
+            text-align: center;
+            font-family: 'Chomsky', serif;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            font-size: 4em;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            font-size: 1em;
+            margin-bottom: 0.3em;
+        }
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 0.3em;
+            color: white;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .article {
+            display: flex;
+            flex-direction: row;
+            align-items: start;
+            margin: 2em 2em;
+            gap: 20px;
+        }
+
+        .article img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+
+
+        }
+
+        .article h2, .article p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .source {
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        footer {
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .container {
+                display: flex;
+                justify-content: center;
+            }
+        audio {
+            height: 30px; /* 设置音频元素的高度 */
+        }
+
+        .img2 {
+            flex: 0.5;
+            height: 30px; /* 设置图片的高度 */
+            width: 20px; /* 设置图片的高度 */
+            margin-right: 0px; /* 可选：增加一些右边距 */
+        }
+        .audio2 {
+            flex: 9.5;
+            height: 30px; /* 设置图片的高度 */
+            margin-right: 0px; /* 可选：增加一些右边距 */
+        }
     </style>
 </head>
 <script>
@@ -143,11 +143,11 @@ audio {
             audio.src = url;
             audio.controls = true;
             audio.autoplay = false;
+            audio.className = "audio2"
+
             var newImg = document.createElement('img');
             newImg.src = 'aigc.png'; // 图片的路径
             newImg.alt = 'AIGC'; // 图片的替代文本
-            newImg.width = 100; // 图片的宽度
-            newImg.height = 100; // 图片的高度
             newImg.className = "img2";
 
             var newDiv = document.createElement('div');
