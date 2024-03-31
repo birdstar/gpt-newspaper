@@ -96,6 +96,9 @@ audio {
     function getVoice(news, voice, emotion, ele){
         const url = 'https://43.135.163.166:6006/v1/audio/speech';
         var timestampInMilliseconds = new Date().getTime();
+        //get filename:
+        let extractedText = news.replace(/[^a-zA-Z]/g, '');
+        let titleName = extractedText.slice(0, 25);
         const data = {
             input: news,
             voice: voice,
@@ -104,7 +107,7 @@ audio {
             model: "emoti-voice",
             response_format: "mp3",
             speed: 1,
-            ts:timestampInMilliseconds
+            ts:titleName
         };
 
         fetch(url, {
@@ -143,7 +146,6 @@ audio {
             ele.appendChild(newDiv);
 
             audio.load()
-
         })
         .catch(error => {
             console.error('There was a problem with your fetch operation:', error);
