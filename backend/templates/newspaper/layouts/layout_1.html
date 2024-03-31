@@ -141,8 +141,18 @@ audio {
             newDiv.appendChild(newImg);
             newDiv.appendChild(audio);
 
+             var videoElement = document.createElement('video');
+            videoElement.controls = true; // 显示视频控制条
+
+            var sourceElement = document.createElement('source');
+            sourceElement.src = 'http://127.0.0.1:8001/video/1711862929591.mp4'; // 视频文件的 URL
+            sourceElement.type = 'video/mp4'; // 视频文件类型
+
+            videoElement.appendChild(sourceElement);
+
 
             ele.appendChild(newDiv);
+             ele.appendChild(videoElement);
         })
         .catch(error => {
             console.error('There was a problem with your fetch operation:', error);
