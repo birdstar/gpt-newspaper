@@ -152,7 +152,9 @@ audio {
 
 
             ele.appendChild(newDiv);
-             ele.appendChild(videoElement);
+            ele.appendChild(videoElement);
+            audio.load()
+            videoElement.load()
         })
         .catch(error => {
             console.error('There was a problem with your fetch operation:', error);
