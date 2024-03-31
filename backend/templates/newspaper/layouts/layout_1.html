@@ -95,6 +95,7 @@ audio {
 <script>
     function getVoice(news, voice, emotion, ele){
         const url = 'http://127.0.0.1:6006/v1/audio/speech';
+        var timestampInMilliseconds = new Date().getTime();
         const data = {
             input: news,
             voice: voice,
@@ -102,7 +103,8 @@ audio {
             language: "zh_us",
             model: "emoti-voice",
             response_format: "mp3",
-            speed: 1
+            speed: 1,
+            ts:timestampInMilliseconds
         };
 
         fetch(url, {
