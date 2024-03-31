@@ -55,7 +55,7 @@ class WriterAgent:
                        f"topic based on the sources.\n "
                        f"Please return nothing but a JSON in the following format:\n"
                        f"{sample_json}\n "
-                       f"If the topic is of interest to women, then set the \"voice\" in JSON to \"8051\". If the topic is of interest to men, then set the \"voice\" in JSON to \"BZNSYP\"\n "
+                       f"If the topic is of interest to women, then set the \"voice\" in JSON to \"BZNSYP\". If the topic is of interest to men, then set the \"voice\" in JSON to \"BZNSYP\"\n "
                        f"If the topic is funny or relex, then set the \"emotion\" in JSON to \"开心\". If the topic is serious or sad, then set the \"emotion\" in JSON to \"悲伤\"\n "
         }]
 
