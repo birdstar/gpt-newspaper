@@ -15,7 +15,7 @@ sample_json = """
     "paragraph 5",
     ],
     "summary": "2 sentences summary of the article",
-    "voice": "8051 or BZNSYP",
+    "voice": "BZNSYP",
     "emotion": "开心 or 悲伤"
 }
 """
@@ -29,7 +29,7 @@ sample_revise_json = """
         "paragraph 4",
         "paragraph 5",
     ],
-    "voice": "8051 or BZNSYP",
+    "voice": "BZNSYP",
     "emotion": "开心 or 悲伤"
     "message": "message to the critique"
 }
