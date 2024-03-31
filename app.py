@@ -34,7 +34,11 @@ def run_frontend():
                                                                     '/home/ubuntu/workspace/birdstar/gpt-newspaper/ssl/server.key'))
 
 def run_backend():
-    backend_app.run(host='0.0.0.0', port=8000)
+    # backend_app.run(host='0.0.0.0', port=8000)
+    backend_app.run(host='0.0.0.0', port=8000,
+                     ssl_context=('/home/ubuntu/workspace/birdstar/gpt-newspaper/ssl/server.crt',
+                                  '/home/ubuntu/workspace/birdstar/gpt-newspaper/ssl/server.key'))
+
 
 if __name__ == '__main__':
     # Start the backend server
