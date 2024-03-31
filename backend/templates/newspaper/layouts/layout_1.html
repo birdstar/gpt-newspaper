@@ -93,12 +93,13 @@ audio {
     </style>
 </head>
 <script>
+    let titleName = "tmp"
     function getVoice(news, voice, emotion, ele){
         const url = 'https://43.135.163.166:6006/v1/audio/speech';
         var timestampInMilliseconds = new Date().getTime();
         //get filename:
         let extractedText = news.replace(/[^a-zA-Z]/g, '');
-        let titleName = extractedText.slice(0, 25);
+        titleName = extractedText.slice(0, 25);
         const data = {
             input: news,
             voice: voice,
@@ -152,8 +153,8 @@ audio {
         });
     }
 
-    function getVideo(ele){
-        const url = 'https://43.135.163.166:8001/video/1711862929591';
+    function getVideo(filename, ele){
+        const url = 'https://43.135.163.166:8001/video/'+filename;
         fetch(url, {
             method: 'GET',
             headers: {
@@ -215,7 +216,7 @@ articles.forEach(article => {
     const voices = article.querySelectorAll('.voice');
     voicenPText = voices[0].outerText;
     getVoice(paragraphText, voicenPText, emotionPText , article); // 输出 <p> 元素的文本内容
-    getVideo(article); // 输出 <p> 元素的文本内容
+    getVideo(titleName, article); // 输出 <p> 元素的文本内容
 });
 </script>
 </html>
