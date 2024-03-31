@@ -12,8 +12,8 @@ CORS(backend_app)
 
 
 frontend_app = Flask(__name__, static_folder='frontend')
-frontend_app.run('0.0.0.0', debug=True, port=5000, ssl_context=('ssl/server.crt',
-                                                                'ssl/server.key'))
+# frontend_app.run('0.0.0.0', debug=True, port=6000, ssl_context=('ssl/server.crt','ssl/server.key'))
+# frontend_app.run('0.0.0.0', debug=True, port=6000)
 
 @frontend_app.route('/')
 def index():
@@ -29,7 +29,8 @@ def serve_outputs(path):
 
 
 def run_frontend():
-    frontend_app.run(host='0.0.0.0', port=5000)
+    # frontend_app.run(host='0.0.0.0', port=5000)
+    frontend_app.run('0.0.0.0', debug=True, port=5000, ssl_context=('ssl/server.crt', 'ssl/server.key'))
 
 def run_backend():
     backend_app.run(host='0.0.0.0', port=8000)
