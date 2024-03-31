@@ -109,6 +109,8 @@ audio {
 
         fetch(url, {
             method: 'POST',
+            mode: 'no-cors',
+            credentials: 'include',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
