@@ -15,7 +15,7 @@ sample_json = """
     "paragraph 5",
     ],
     "summary": "2 sentences summary of the article",
-    "voice": "8051 or 9017",
+    "voice": "8051 or BZNSYP",
     "emotion": "开心 or 悲伤"
 }
 """
@@ -29,7 +29,7 @@ sample_revise_json = """
         "paragraph 4",
         "paragraph 5",
     ],
-    "voice_type": "8051 or 9017",
+    "voice_type": "8051 or BZNSYP",
     "emotion": "开心 or 悲伤"
     "message": "message to the critique"
 }
@@ -55,7 +55,7 @@ class WriterAgent:
                        f"topic based on the sources.\n "
                        f"Please return nothing but a JSON in the following format:\n"
                        f"{sample_json}\n "
-                       f"If the topic is of interest to women, then set the \"voice\" in JSON to \"8051\". If the topic is of interest to men, then set the \"voice\" in JSON to \"9017\"\n "
+                       f"If the topic is of interest to women, then set the \"voice\" in JSON to \"8051\". If the topic is of interest to men, then set the \"voice\" in JSON to \"BZNSYP\"\n "
                        f"If the topic is funny or relex, then set the \"emotion\" in JSON to \"开心\". If the topic is serious or sad, then set the \"emotion\" in JSON to \"悲伤\"\n "
         }]
 
