@@ -110,9 +110,13 @@
     </style>
 </head>
 <script>
+let titleName = "tmp"
     function getVoice(news, voice, emotion, ele){
         const url = 'https://43.135.163.166:6006/v1/audio/speech';
-       var timestampInMilliseconds = new Date().getTime();
+        var timestampInMilliseconds = new Date().getTime();
+        //get filename:
+        let extractedText = news.replace(/[^a-zA-Z]/g, '');
+        titleName = extractedText.slice(0, 25);
         const data = {
             input: news,
             voice: voice,
@@ -121,7 +125,7 @@
             model: "emoti-voice",
             response_format: "mp3",
             speed: 1,
-            ts:timestampInMilliseconds
+            ts:titleName
         };
 
         fetch(url, {
@@ -157,13 +161,76 @@
 
             newDiv.appendChild(newImg);
             newDiv.appendChild(audio);
-
-
             ele.appendChild(newDiv);
+
+            audio.load()
         })
         .catch(error => {
             console.error('There was a problem with your fetch operation:', error);
         });
+    }
+
+    async function getVideo(filename, ele){
+        const url = 'https://43.135.163.166:8001/video/'+filename;
+        fetch(url, {
+            method: 'GET',
+            headers: {
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                console.error('Network response was not ok');
+                getVideo(filename, ele);
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+            var videoElement = document.createElement('video');
+            videoElement.controls = true; // 显示视频控制条
+
+            var sourceElement = document.createElement('source');
+            sourceElement.src = url;
+            sourceElement.type = 'video/mp4'; // 视频文件类型
+            sourceElement.crossorigin='anonymous'
+
+            videoElement.appendChild(sourceElement);
+            ele.appendChild(videoElement);
+            videoElement.load()
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+    }
+
+    async function asyncRequestWithRetry(filename, ele) {
+        const url = 'https://43.135.163.166:8001/video/'+filename;
+        while (true) {
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    var videoElement = document.createElement('video');
+                    videoElement.controls = true; // 显示视频控制条
+
+                    var sourceElement = document.createElement('source');
+                    sourceElement.src = url;
+                    sourceElement.type = 'video/mp4'; // 视频文件类型
+                    sourceElement.crossorigin='anonymous'
+
+                    videoElement.appendChild(sourceElement);
+                    ele.appendChild(videoElement);
+                    videoElement.load()
+                    break; // 请求成功，跳出循环
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                await new Promise(resolve => setTimeout(resolve, 2000)); // 等待2秒
+            }
+        }
     }
 </script>
 <body>
@@ -197,6 +264,7 @@ articles.forEach(article => {
     const voices = article.querySelectorAll('.voice');
     voicenPText = voices[0].outerText;
     getVoice(paragraphText, voicenPText, emotionPText , article); // 输出 <p> 元素的文本内容
-});
+    //getVideo(titleName, article);
+    asyncRequestWithRetry(titleName, article);
 </script>
 </html>
