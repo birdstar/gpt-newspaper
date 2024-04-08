@@ -9,7 +9,7 @@ class SearchAgent:
         pass
 
     def search_tavily(self, query: str):
-        results = tavily_client.search(query=query, topic="news", max_results=10, include_images=True)
+        results = tavily_client.search(query=query, topic="news", max_results=8, include_images=True)
         sources = results["results"]
         print(results)
         try:
