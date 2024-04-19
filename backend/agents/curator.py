@@ -30,7 +30,7 @@ class CuratorAgent:
         }]
 
         lc_messages = convert_openai_messages(prompt)
-        response = ChatOpenAI(openai_api_base='https://api.chatweb.plus/v1',model='gpt-3.5-turbo', max_retries=1).invoke(lc_messages).content
+        response = ChatOpenAI(openai_api_base='https://api.chatweb.plus/v1',model='gpt-3.5-turbo-1106', max_retries=1).invoke(lc_messages).content
         chosen_sources = response
         print(response)
         for i in sources:
