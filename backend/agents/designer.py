@@ -20,7 +20,7 @@ class DesignerAgent:
         date = article["date"]
         image = article["image"]
         voice = article.get('voice', "BZNSYP")
-        emotion = article["emotion"]
+        emotion = article.get('emotion', "开心")
         paragraphs = article["paragraphs"]
         html_template = html_template.replace("{{title}}", title)
         html_template = html_template.replace("{{image}}", image)
