@@ -156,7 +156,8 @@ audio {
     async function getVideo(filename, ele){
         //const url = 'https://43.135.163.166:8001/video/'+filename;
 
-        const url = 'https://40.73.97.134:58001/video/'+filename;
+        const url = 'https://43.135.132.119:8001/video/'+filename;
+
         fetch(url, {
             method: 'GET',
             headers: {
@@ -190,7 +191,9 @@ audio {
 
     async function asyncRequestWithRetry(filename, ele) {
         //const url = 'https://43.135.163.166:8001/video/'+filename;
-        const url = 'https://40.73.97.134:58001/video/'+filename;
+        //const url = 'https://40.73.97.134:58001/video/'+filename;
+        const url = 'https://43.135.132.119:8001/video/'+filename;
+
         while (true) {
             try {
                 const response = await fetch(url);
